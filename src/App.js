@@ -5,7 +5,19 @@ import { useState } from 'react';
 
 function App() {
   const [contacts, setContacts] = useState(peopleContacts);
-  const allContacts = peopleContacts.map((value) => {return value})
+
+
+  //3 iteration 
+  const deleteContact = (contactId) => {
+    const filteredContact = contacts.filter((people) => {
+      return people._id !== contactId;
+    });
+    setContacts(filteredContact);
+  };
+
+  
+
+  
   return (
     
     <div className="App">
@@ -16,15 +28,19 @@ function App() {
           <th>Name</th>
           <th>Popularity</th>
         </tr>
-        <tr>
-        <tb >
-         
-        </tb>
-        </tr>
-        <tr>
-        <tb></tb>
-        </tr>
-        
+        {contacts.map((people) => {
+          return(
+            <tr>
+
+            <td><img src = {people.pictureUrl} className= "pic"/></td>
+            <td>{people.name}</td>
+            <td>{people.popularity}</td>
+            <td></td>
+            </tr>
+
+
+          )
+        })}
       </table>
     </div>
   );
